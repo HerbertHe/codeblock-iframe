@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Demo</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .raw-input,
+            .result {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            #slot {
+                width: 100%;
+                height: 500px;
+                background-color: grey;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="raw-input">
+            <textarea id="input_toml" cols="30" rows="10"></textarea>
+            <button
+                onclick="toml2iframe()"
+                style="padding: 5px; cursor: pointer"
+            >
+                转化 Convert
+            </button>
+        </div>
+
+        <div class="result" style="margin-top: 20px">
+            <div
+                style="
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    padding: 0 10px;
+                "
+            >
+                输出结果 Result:
+                <input
+                    id="result-slot"
+                    disabled
+                    style="flex: 1; margin-left: 10px"
+                />
+            </div>
+            <div id="slot"><h2>此处渲染iframe预览 Preview Here!</h2></div>
+        </div>
+
+        <script src="../dist/index.js"></script>
+        <script>
+            // 初始化值
+            document.getElementById(
+                "input_toml"
+            ).value = `# 在下面输入iframe的属性值\n# Write your own iframe attributes here!\nsrc="https://www.baidu.com"\nwidth="100%"\nheight="500px"`
+
+            // 触发点击函数
+            function toml2iframe() {
+                var inputValue = document.getElementById("input_toml").value
+                var after = window.__codeblock_iframe.converter(inputValue)
+
+                var output = after[0]
+                document.getElementById(
+                    "result-slot"
+                ).value = after[0].toString()
+                document.getElementById("slot").innerHTML = output
+            }
+        </script>
+    </body>
+</html>
