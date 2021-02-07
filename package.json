@@ -1,7 +1,7 @@
 {
   "name": "codeblock-iframe",
   "description": "A library that can let you use iframe in markdown extra syntax securely!",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "repository": "https://github.com/HerbertHe/codeblock-iframe.git",
   "author": "HerbertHe <Herbert.He0229@gmail.com>",
